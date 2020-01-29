@@ -80,7 +80,7 @@ new file mode 100644
 index 0000000..9a28836
 --- /dev/null
 +++ b/libavcodec/libsvt_hevc.c
-@@ -0,0 +1,518 @@
+@@ -0,0 +1,523 @@
 +/*
 +* Scalable Video Technology for HEVC encoder library plugin
 +*
@@ -137,6 +137,7 @@ index 0000000..9a28836
 +    int scd;
 +    int tune;
 +    int base_layer_switch_mode;
++    int pred_structure;
 +    int qp;
 +    int aud;
 +    int asm_type;
@@ -273,6 +274,7 @@ index 0000000..9a28836
 +    param->sceneChangeDetection = svt_enc->scd;
 +    param->tune = svt_enc->tune;
 +    param->baseLayerSwitchMode = svt_enc->base_layer_switch_mode;
++    param->predStructure = svt_enc->pred_structure;
 +    param->qp = svt_enc->qp;
 +    param->accessUnitDelimiter = svt_enc->aud;
 +    param->asmType = svt_enc->asm_type;
@@ -509,6 +511,9 @@ index 0000000..9a28836
 +
 +    { "bl_mode", "Random Access Prediction Structure type setting", OFFSET(base_layer_switch_mode),
 +      AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, VE },
++
++    { "pred_struct", "Prediction Structure", OFFSET(pred_structure),
++      AV_OPT_TYPE_INT, { .i64 = 2 }, 0, 2, VE },
 +
 +    { "forced-idr", "If forcing keyframes, force them as IDR frames.", OFFSET(forced_idr),
 +      AV_OPT_TYPE_INT,   { .i64 = -1 }, -1, INT_MAX, VE },
